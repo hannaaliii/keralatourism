@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="test.css">
+    
+</head>
+<body>
+    <div class="login">
+        <form method="post" action="welcome.html" class="login100-form validate-form" onsubmit="return validate()">
+        <h1>Sign In</h1>
+        <!-- <span class="login100-form-avatar">
+            <img src="images/avatar-01.png" alt="AVATAR">
+        </span> -->
+            <input id="email" type="text" name="email" data-validate = "Enter Email" placeholder="email" required="required" />
+            <label for="error" id="error"></label>
+            <!-- <input type="password" placeholder="pass" id="pwd" required="required">
+            <button id="submit"  class="btn btn-primary btn-block btn-large">Let me in.</button> -->
+            <div>
+
+                <!-- <label for="pwd">Password:</label> -->
+                <input type="text" id="pwd" placeholder="password"  onkeyup="validatePassword(this.value);"/><span id="msg"></span>
+    
+            </div>
+            <script>
+                function validatePassword(password) {
+                    
+                    // Do not show anything when the length of password is zero.
+                    if (password.length === 0) {
+                        document.getElementById("msg").innerHTML = "";
+                        return;
+                    }
+                    // Create an array and push all possible values that you want in password
+                    var matchedCase = new Array();
+                    matchedCase.push("[$@$!%*#?&]"); // Special Charector
+                    matchedCase.push("[A-Z]");      // Uppercase Alpabates
+                    matchedCase.push("[0-9]");      // Numbers
+                    matchedCase.push("[a-z]");     // Lowercase Alphabates
+    
+                    // Check the conditions
+                    var ctr = 0;
+                    for (var i = 0; i < matchedCase.length; i++) {
+                        if (new RegExp(matchedCase[i]).test(password)) {
+                            ctr++;
+                        }
+                    }
+                    // Display it
+                    var color = "";
+                    var strength = "";
+                    switch (ctr) {
+                        case 0:
+                        case 1:
+                        case 2:
+                            strength = "Very Weak";
+                            color = "red";
+                            break;
+                        case 3:
+                            strength = "Medium";
+                            color = "orange";
+                            break;
+                        case 4:
+                            strength = "Strong";
+                            color = "green";
+                            break;
+                    }
+                    document.getElementById("msg").innerHTML = strength;
+                    document.getElementById("msg").style.color = color;
+                }
+            </script>
+             <button id="submit" onsubmit= "return validatePassword() &&  validate()  "    class="btn btn-primary btn-block btn-large">Let me in.              </button> 
+
+
+
+
+         <ul class="login-more p-t-190">
+               
+                <li>
+                    <span class="txt1">
+                        Don’t have an account?
+                    </span>
+
+                    <a href="signup.html" class="txt2">
+                        Sign up
+                    </a>
+                </li>
+            </ul>
+        </form>
+      </div>
+      <!-- <script type="text/javascript">
+      document.getElementById("submit").onclick = function() {
+          location.href="welcome.html";
+      }; -->
+    </script>
+    <script src="test.js"></script>
+</body>
+</html>
